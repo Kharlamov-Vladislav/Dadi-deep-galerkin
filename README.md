@@ -16,8 +16,8 @@ We obtained almost identical solution with dadi method for AFS with RMSE less th
 
 From the application of our method we can get the following result, for example:
 
-![Comparison AFS of our method with the numerical solution](afs_example.png)
-![Comparison density of our method with the numerical solution](density_example.png)
+![Comparison AFS of our method with the numerical solution](docs/afs_example.png)
+![Comparison density of our method with the numerical solution](docs/density_example.png)
 
 # Startup instructions
 
