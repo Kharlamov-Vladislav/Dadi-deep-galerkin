@@ -1,0 +1,2 @@
+model_checkpoint_path: "one_pop_example"
+all_model_checkpoint_paths: "one_pop_example"
