@@ -46,8 +46,3 @@ Run `model_train.py ...` to train a new model to solve the diffusion equation.
 There are no parameters to set in CLI. You can change the range of parameters of equation and training settings by editing the source code.
 
 You can use an already trained model that is saved in a folder ```trained_models```. The example of its use and comparison with the classical solution is in ```one_pop_example.ipynb``` notebook.
-
-
-#### Clarification
-
-Scripts (`file_1.py`, `file_2.py`, ...) do this...
