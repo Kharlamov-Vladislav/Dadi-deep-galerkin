@@ -171,6 +171,20 @@ if __name__ == "__main__":
     output_file_name = 'one_pop_example'
     sess, loss_tnsr, optimizer = build_model()
     train_model(sess, loss_tnsr, optimizer)
-    saver = tf.train.Saver()
-    saver.save(sess, f'./trained_models/{output_file_name}')
+
+    with tf.Graph().as_default():
+        with tf.Session() as sess:
+            ...
+
+            # Saving
+            inputs = {
+                "model_placeholder": batch_size_placeholder,
+                "features_placeholder": features_placeholder,
+                "labels_placeholder": labels_placeholder,
+            }
+            outputs = {"prediction": model_output}
+            tf.saved_model.simple_save(
+                sess, 'path/to/your/location/', inputs, outputs
+            )
+
     print(f'The model is saved in trained_models/{output_file_name}')
