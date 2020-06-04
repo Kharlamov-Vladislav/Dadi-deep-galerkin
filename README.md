@@ -1,15 +1,51 @@
-**Diffusion Approximation for Demographic Inference**
+# Deep Galerkin Method for predicting demographic history of populations
 
-dadi implements methods for demographic history and selection inference from genetic data, based on diffusion approximations to the allele frequency spectrum. One of dadi's main benefits is speed: fitting a two-population model typically takes around 10 minutes, and run time is independent of the number of SNPs in your data set. dadi is also flexible, handling up to three simultaneous populations, with arbitrary timecourses for population size and migration, plus the possibility of admixture and population-specific selection.
+*Bioinformatics Institute, 2020, spring*
 
-Originally dadi was initially developed by  Ryan Gutenkunst in the labs of Scott Williamson and Carlos Bustamante (https://bustamantelab.stanford.edu/) in Cornell's Department of Biological Statistics and Computational Biology. Ryan is now faculty in Molecular and Cellular Biology at the University of Arizona, and his group continues to work on dadi and other topics (http://gutengroup.mcb.arizona.edu).
+## Project goals
 
-If you use dadi in your research, please cite RN Gutenkunst, RD Hernandez, SH Williamson, CD Bustamante "Inferring the joint demographic history of multiple populations from multidimensional SNP data" PLoS Genetics 5:e1000695 (2009).
+The aim of the project was to introduce the method for solving differential equations using [Deep Galerkin](https://github.com/analysiscenter/pydens) neural networks into the dadi method for solving the diffusion equation. Since the [Diffusion Approximations for Demographic Inference [dadi]](https://github.com/niuhuifei/dadi) method simulates genetic data, namely the allele-frequency spectrum (AFS), numerically solving several diffusion equations. 
 
-**Getting started**
+## Methods
 
-See the manual (https://dadi.readthedocs.io) and the example files in the source distribution. Full API documenation is available (https://dadi.readthedocs.io/en/latest/api/dadi/) and is in the source distribution, under doc/api/dadi/index.html .
+The implementation from the original article of [Deep Galerkin](https://arxiv.org/pdf/1909.11544.pdf) was used with some changes. The Deep Galerkin method was applied for the one-dimensional diffusion equation with the following parameters: selection, relative population size and mutation influx. We also implemented training with different sets of parameters, which allowed us to train the model once, and use it further with different parameters without re-training.
 
-Also, please sign up for our mailing list, where we help the community with ∂a∂i. Please do search the archives before posting. Many questions come up repeatedly. (http://groups.google.com/group/dadi-user)
+## Results
 
-The easiest way to install dadi is via conda, `conda install -c bioconda dadi`.
+We obtained almost identical solution with dadi method for AFS with RMSE less than 1 on average. We have not obtained the desired acceleration, because model training is slow. However it seems that for large dimensions, the method based on neural networks should give on orders of magnitude better result than the classical methods for solving differential equations, and in particular, the diffusion equation.
+
+From the application of our method we can get the following result, for example:
+
+![Comparison AFS of our method with the numerical solution](afs_example.png)
+![Comparison density of our method with the numerical solution](density_example.png)
+
+# Startup instructions
+
+## Requirements
+
+Python >= 3.7
+
+(Tested on Ubuntu 18.04, Python 3.7)
+
+## How to run
+
+### Dependencies
+
+
+Install ...
+
+```
+pip install -r requirements.txt
+```
+
+to install dependencies.
+
+### Running
+
+Run `python3 file_1.py, file_2.py, ...`.
+
+There are no parameters to set in CLI. You can change the program by editing the source code.
+
+#### Clarification
+
+Scripts (`file_1.py`, `file_2.py`, ...) do this...
