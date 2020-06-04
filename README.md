@@ -4,7 +4,7 @@
 
 ## Project goals
 
-The aim of the project was to introduce the method for solving differential equations using [Deep Galerkin](https://github.com/analysiscenter/pydens) neural networks into the dadi method for solving the diffusion equation. Since the [Diffusion Approximations for Demographic Inference [dadi]](https://github.com/niuhuifei/dadi) method simulates genetic data, namely the allele-frequency spectrum (AFS), numerically solving several diffusion equations. 
+The aim of the project was to introduce the method for solving differential equations using [Deep Galerkin](https://arxiv.org/pdf/1909.11544.pdf) neural networks into the dadi method for solving the diffusion equation. Since the [Diffusion Approximations for Demographic Inference [dadi]](https://github.com/niuhuifei/dadi) method simulates genetic data, namely the allele-frequency spectrum (AFS), numerically solving several diffusion equations. 
 
 ## Methods
 
@@ -42,8 +42,9 @@ to install dependencies.
 
 ### Running
 
-Run `model_train.py ...` to train a new model to solve the diffusion equation. You can specify range of parameters in the source code.
-You can use an already trained model that is saved in a folder ```trained_models```. An example of its use and comparison with the classical solution is in ```one_pop_example.ipynb``` notebook.
+Run `model_train.py ...` to train a new model to solve the diffusion equation. You can specify range of parameters in the source code.  
+
+You can use an already trained model that is saved in a folder ```trained_models```. The example of its use and comparison with the classical solution is in ```one_pop_example.ipynb``` notebook.
 
 There are no parameters to set in CLI. You can change the program by editing the source code.
 
