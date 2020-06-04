@@ -13,8 +13,8 @@ x_high = 1 - 10e-15   # X upper bound
 
 
 # Parameters domains
-nu_low = 30.0
-nu_high = 40.0
+nu_low = 40.0
+nu_high = 50.0
 gamma_low = -2.0
 gamma_high = 2.0
 theta_low = 1.0
@@ -22,16 +22,16 @@ theta_high = 1.0
 
 # NN parameters
 num_layers = 3
-nodes_per_layer = 10
+nodes_per_layer = 20
 learning_rate = 0.0005
 
 # Training parameters
-sampling_stages  = 50   # number of times to resample new time-space domain points
-steps_per_sample = 10    # number of SGD steps to take before re-sampling
+sampling_stages  = 100   # number of times to resample new time-space domain points
+steps_per_sample = 100    # number of SGD steps to take before re-sampling
 
 # Sampling parameters
-nSim_interior = 1000
-nSim_terminal = 1000
+nSim_interior = 2000
+nSim_terminal = 2000
 
 # Model tensor placeholders
 
@@ -171,20 +171,6 @@ if __name__ == "__main__":
     output_file_name = 'one_pop_example'
     sess, loss_tnsr, optimizer = build_model()
     train_model(sess, loss_tnsr, optimizer)
-
-    with tf.Graph().as_default():
-        with tf.Session() as sess:
-            ...
-
-            # Saving
-            inputs = {
-                "model_placeholder": batch_size_placeholder,
-                "features_placeholder": features_placeholder,
-                "labels_placeholder": labels_placeholder,
-            }
-            outputs = {"prediction": model_output}
-            tf.saved_model.simple_save(
-                sess, 'path/to/your/location/', inputs, outputs
-            )
-
+    saver = tf.train.Saver()
+    saver.save(sess, f'./trained_models/{output_file_name}')
     print(f'The model is saved in trained_models/{output_file_name}')
