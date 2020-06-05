@@ -31,8 +31,7 @@ Python >= 3.7
 
 ### Dependencies
 
-
-Install ...
+We recommend using a virtual environment to eliminate dependency errors.
 
 ```
 pip install -r requirements.txt
@@ -42,7 +41,7 @@ to install dependencies.
 
 ### Running
 
-Run `model_train.py ...` to train a new model to solve the diffusion equation.  
+Run `model_train.py` to train a new model to solve the diffusion equation.  
 There are no parameters to set in CLI. You can change the range of parameters of equation and training settings by editing the source code.
 
 You can use an already trained model that is saved in a folder ```trained_models```. The example of its use and comparison with the classical solution is in ```one_pop_example.ipynb``` notebook.
