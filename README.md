@@ -52,9 +52,12 @@ There are no parameters to set in CLI. You can change the range of parameters of
   * nu_low and nu_high: range of values for a relative population size  
   * gamma_low and gamma_high: range of values for a selection coefficient  
   * theta_low and theta_high: range of values for the influx of new mutations coefficient  
+  
+  Large range of values for parameters require more iterations of training, but it will give you a more versatile model, that can be used with wider domain of parameters.  
+  
 #### Neural network architecture parameters:  
   * num_layers: the number of layers  
-  * nodes_per_layer: the number of neurons in the layer  
+  * nodes_per_layer: the number of neurons in the layer    
 #### Training parameters:  
   * learning_rate: the step size at each iteration of gradient descent  
   * sampling_stages: the number of times to resample new time-space domain points  
