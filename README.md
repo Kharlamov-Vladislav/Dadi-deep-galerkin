@@ -7,7 +7,7 @@
 The aim of the project was to introduce the method for solving differential equations using [Deep Galerkin](https://arxiv.org/pdf/1909.11544.pdf) neural networks into the dadi method for solving the diffusion equation. Since the [Diffusion Approximations for Demographic Inference [dadi]](https://github.com/niuhuifei/dadi) method simulates genetic data, namely the allele-frequency spectrum (AFS), numerically solving several diffusion equations. 
 
 It is proposed to solve the following equation using Deep Galerkin:  
-<img src="https://render.githubusercontent.com/render/math?math=$\displaystyle\frac{\partial u}{\partial t} - \frac{\partial^2 u}{\partial x^2}\frac{x(1-x)}{2\rho(t)}+\frac{\partial u}{\partial x}S x(1-x) = 0$">  
+<img src="https://render.githubusercontent.com/render/math?math=$\displaystyle\frac{\partial u}{\partial t} - \frac{\partial^2 u}{\partial x^2}\frac{x(1-x)}{2\rho(t)}  %2B  \frac{\partial u}{\partial x}S x(1-x) = 0$">  
 with boundary condition:  
 <img src="https://render.githubusercontent.com/render/math?math=$\lim_{x \to 0} u(x,t) = \theta \rho(t)$">
 
