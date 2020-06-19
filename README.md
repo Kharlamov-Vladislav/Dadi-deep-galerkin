@@ -6,6 +6,15 @@
 
 The aim of the project was to introduce the method for solving differential equations using [Deep Galerkin](https://arxiv.org/pdf/1909.11544.pdf) neural networks into the dadi method for solving the diffusion equation. Since the [Diffusion Approximations for Demographic Inference [dadi]](https://github.com/niuhuifei/dadi) method simulates genetic data, namely the allele-frequency spectrum (AFS), numerically solving several diffusion equations. 
 
+It is proposed to solve the following equation using Deep Galerkin:  
+<img src="https://render.githubusercontent.com/render/math?math=$\displaystyle\frac{\partial u}{\partial t} - \frac{\partial^2 u}{\partial x^2}\frac{x(1-x)}{2\rho(t)}+\frac{\partial u}{\partial x}S x(1-x) = 0$">  
+with boundary condition:  
+<img src="https://render.githubusercontent.com/render/math?math=$\lim_{x \to 0} u(x,t) = \theta \rho(t)$">
+
+where *S* is selection coefficient, <img src="https://render.githubusercontent.com/render/math?math=$\rho$"> is relative population size and <img src="https://render.githubusercontent.com/render/math?math=$\theta$"> is influx of new mutations coefficient.  
+
+The solution u(x,t) of this equation is the density of the allele-frequency spectrum. With it, it is possible to evaluate the parameters of the demographic history of populations using the maximum likelihood method.
+
 ## Methods
 
 The implementation from the original article of [Deep Galerkin](https://arxiv.org/pdf/1909.11544.pdf) was used with some changes. The Deep Galerkin method was applied for the one-dimensional diffusion equation with the following parameters: selection, relative population size and mutation influx. We also implemented training with different sets of parameters, which allowed us to train the model once, and use it further with different parameters without re-training.
