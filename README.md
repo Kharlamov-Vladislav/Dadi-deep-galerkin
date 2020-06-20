@@ -1,6 +1,7 @@
 # Deep Galerkin Method for predicting demographic history of populations
 
 *Bioinformatics Institute, 2020, spring*
+*Authors: V.D. Pankov, V.D. Kharlamov*
 
 # Table of contents
 
