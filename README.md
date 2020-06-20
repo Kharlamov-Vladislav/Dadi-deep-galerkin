@@ -17,10 +17,19 @@ The solution u(x,t) of this equation is the density of the allele-frequency spec
 
 ## Methods
 
-The implementation from the original article of [Deep Galerkin](https://arxiv.org/pdf/1909.11544.pdf) was used with some changes. The Deep Galerkin method was applied for the one-dimensional diffusion equation with the following parameters: selection, relative population size and mutation influx. We also implemented training with different sets of parameters, which allowed us to train the model once, and use it further with different parameters without re-training.
+The implementation from the original article of [Deep Galerkin](https://arxiv.org/pdf/1909.11544.pdf) was used with some changes. The Deep Galerkin method was applied for the one-dimensional diffusion equation with the following parameters: selection, relative population size and mutation influx. We also implemented training with different sets of parameters, which allowed us to train the model once, and use it further with different parameters without re-training.  
 
-
-
+The model that is used to approximate the solution is a neural network. It consists of one Dense layer as input, specified number of hidden LSTM layers and one Dense layer as output.  
+This model is trained on randomly generated samples from PDE time-space domain ([0-1]x[0-1]) and from parameters domain.  
+The loss function is consists of three terms: 
+  * to minimize differential equation operator:  
+    <img src="https://render.githubusercontent.com/render/math?math=$\displaystyle\frac{\partial u}{\partial t} - \frac{\partial^2 u}{\partial x^2}\frac{x(1-x)}{2\rho(t)}  %2B  \frac{\partial u}{\partial x}S x(1-x)$">  
+  which is calculated analytically at point (x, t, rho, S, theta) from generated data.
+  * to match the solution to the boundary conditions  
+    <img src="https://render.githubusercontent.com/render/math?math=$u(0,t) - \theta\rho(t)$">
+  * to match the solution to the initial conditions  
+    <img src="https://render.githubusercontent.com/render/math?math=$u(x,0) - \rho\theta\frac{1 - exp(-2S(1-x))}{1 - exp(-2S)}$">
+    
 ## Results
 
 We obtained almost identical solution with dadi method for AFS with RMSE less than 1 on average. We have not obtained the desired acceleration, because model training is slow. However it seems that for large dimensions, the method based on neural networks should give on orders of magnitude better result than the classical methods for solving differential equations, and in particular, the diffusion equation.
