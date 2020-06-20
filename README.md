@@ -38,14 +38,17 @@ The model that is used to approximate the solution is a neural network. It consi
 This model is trained on randomly generated samples from PDE time-space domain <img src="https://render.githubusercontent.com/render/math?math=$%5B0,%201%5D%20%5Ctimes%20%5B0,1%5D"> and from parameters domain.  
 The loss function is consists of three terms: 
   * to minimize differential equation operator: 
+  
   <p align="center">
     <img src="https://render.githubusercontent.com/render/math?math=$\displaystyle\frac{\partial u}{\partial t} - \frac{\partial^2 u}{\partial x^2}\frac{x(1-x)}{2\rho(t)}  %2B  \frac{\partial u}{\partial x}S x(1-x)$">  
  </p>
   which is calculated analytically at point (x, t, rho, S, theta) from generated data.
+  
   * to match the solution to the boundary conditions  
   <p align="center">
     <img src="https://render.githubusercontent.com/render/math?math=$u(0,t) - \theta\rho(t)$">
  </p>
+ 
   * to match the solution to the initial conditions  
  <p align="center">
     <img src="https://render.githubusercontent.com/render/math?math=$u(x,0) - \rho\theta\frac{1 - exp(-2S(1-x))}{1 - exp(-2S)}$">
