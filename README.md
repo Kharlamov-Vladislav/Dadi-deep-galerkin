@@ -6,10 +6,14 @@
 
 The aim of the project was to introduce the method for solving differential equations using [Deep Galerkin](https://arxiv.org/pdf/1909.11544.pdf) neural networks into the dadi method for solving the diffusion equation. Since the [Diffusion Approximations for Demographic Inference [dadi]](https://github.com/niuhuifei/dadi) method simulates genetic data, namely the allele-frequency spectrum (AFS), numerically solving several diffusion equations. 
 
-It is proposed to solve the following equation using Deep Galerkin:  
+It is proposed to solve the following equation using Deep Galerkin:
+<p align="center">
 <img src="https://render.githubusercontent.com/render/math?math=$\displaystyle\frac{\partial u}{\partial t} - \frac{\partial^2 u}{\partial x^2}\frac{x(1-x)}{2\rho(t)}  %2B  \frac{\partial u}{\partial x}S x(1-x) = 0$">  
-with boundary condition:  
+</p>
+with boundary condition: 
+<p align="center">
 <img src="https://render.githubusercontent.com/render/math?math=$\lim_{x \to 0} u(x,t) = \theta \rho(t)$">
+</p>
 
 where *S* is selection coefficient, <img src="https://render.githubusercontent.com/render/math?math=$\rho$"> is relative population size and <img src="https://render.githubusercontent.com/render/math?math=$\theta$"> is influx of new mutations coefficient.  
 
@@ -20,15 +24,21 @@ The solution u(x,t) of this equation is the density of the allele-frequency spec
 The implementation from the original article of [Deep Galerkin](https://arxiv.org/pdf/1909.11544.pdf) was used with some changes. The Deep Galerkin method was applied for the one-dimensional diffusion equation with the following parameters: selection, relative population size and mutation influx. We also implemented training with different sets of parameters, which allowed us to train the model once, and use it further with different parameters without re-training.  
 
 The model that is used to approximate the solution is a neural network. It consists of one Dense layer as input, specified number of hidden LSTM layers and one Dense layer as output.  
-This model is trained on randomly generated samples from PDE time-space domain ([0-1]x[0-1]) and from parameters domain.  
+This model is trained on randomly generated samples from PDE time-space domain <img src="https://render.githubusercontent.com/render/math?math=$%5B0,%201%5D%20%5Ctimes%20%5B0,1%5D"> and from parameters domain.  
 The loss function is consists of three terms: 
-  * to minimize differential equation operator:  
+  * to minimize differential equation operator: 
+  <p align="center">
     <img src="https://render.githubusercontent.com/render/math?math=$\displaystyle\frac{\partial u}{\partial t} - \frac{\partial^2 u}{\partial x^2}\frac{x(1-x)}{2\rho(t)}  %2B  \frac{\partial u}{\partial x}S x(1-x)$">  
+ </p>
   which is calculated analytically at point (x, t, rho, S, theta) from generated data.
   * to match the solution to the boundary conditions  
+  <p align="center">
     <img src="https://render.githubusercontent.com/render/math?math=$u(0,t) - \theta\rho(t)$">
+ </p>
   * to match the solution to the initial conditions  
+ <p align="center">
     <img src="https://render.githubusercontent.com/render/math?math=$u(x,0) - \rho\theta\frac{1 - exp(-2S(1-x))}{1 - exp(-2S)}$">
+  </p>
     
 ## Results
 
