@@ -2,8 +2,19 @@
 
 *Bioinformatics Institute, 2020, spring*
 
-## Project goals
+# Table of contents
 
+1. [Project goals](#sec1) </br>
+2. [Methods](#sec2)</br>
+3. [Result](#sec3)</br>
+4. [Startup instructions](#sec4)</br>
+    4.1. [Requirements](#sec4.1)</br>
+    4.2. [Dependencies](#sec4.2)</br>
+    4.3. [How to run](#sec4.3)</br>
+5. [Gratitude](#sec5)</br>
+
+## Project goals
+<a name="sec1"></a>
 The aim of the project was to introduce the method for solving differential equations using [Deep Galerkin](https://arxiv.org/pdf/1909.11544.pdf) neural networks into the dadi method for solving the diffusion equation. Since the [Diffusion Approximations for Demographic Inference [dadi]](https://github.com/niuhuifei/dadi) method simulates genetic data, namely the allele-frequency spectrum (AFS), numerically solving several diffusion equations. 
 
 It is proposed to solve the following equation using Deep Galerkin:
@@ -20,7 +31,7 @@ where *S* is selection coefficient, <img src="https://render.githubusercontent.c
 The solution u(x,t) of this equation is the density of the allele-frequency spectrum. With it, it is possible to evaluate the parameters of the demographic history of populations using the maximum likelihood method.
 
 ## Methods
-
+<a name="sec2"></a>
 The implementation from the original article of [Deep Galerkin](https://arxiv.org/pdf/1909.11544.pdf) was used with some changes. The Deep Galerkin method was applied for the one-dimensional diffusion equation with the following parameters: selection, relative population size and mutation influx. We also implemented training with different sets of parameters, which allowed us to train the model once, and use it further with different parameters without re-training.  
 
 The model that is used to approximate the solution is a neural network. It consists of one Dense layer as input, specified number of hidden LSTM layers and one Dense layer as output.  
@@ -41,7 +52,7 @@ The loss function is consists of three terms:
   </p>
     
 ## Results
-
+<a name="sec3"></a>
 We obtained almost identical solution with dadi method for AFS with RMSE less than 1 on average. We have not obtained the desired acceleration, because model training is slow. However it seems that for large dimensions, the method based on neural networks should give on orders of magnitude better result than the classical methods for solving differential equations, and in particular, the diffusion equation.
 
 From the application of our method we can get the following result, for example:
@@ -50,17 +61,15 @@ From the application of our method we can get the following result, for example:
 ![Comparison density of our method with the numerical solution](docs/density_example.png)
 
 # Startup instructions
-
+<a name="sec4"></a>
 ## Requirements
-
+<a name="sec4.1"></a>
 Python >= 3.7
 
 (Tested on Ubuntu 18.04, Python 3.7)
 
-## How to run
-
 ### Dependencies
-
+<a name="sec4.2"></a>
 We recommend using a virtual environment to eliminate dependency errors.
 
 ```
@@ -70,7 +79,7 @@ pip install -r requirements.txt
 to install dependencies.
 
 ### Running
-
+<a name="sec4.3"></a>
 Run `model_train.py` to train a new model to solve the diffusion equation. The trained model will be stored in "trained_models" folder.
 There are no parameters to set in CLI. You can change the range of parameters of equation and training settings by editing the source code.  
 **You can change the following parameters:**  
@@ -94,4 +103,6 @@ There are no parameters to set in CLI. You can change the range of parameters of
     
 You can use an already trained model that is saved in a folder ```trained_models```. The example of its use and comparison with the classical solution is in ```one_pop_example.ipynb``` notebook.
 
+## Gratitude
+<a name="sec5"></a>
 
