@@ -110,4 +110,5 @@ You can use an already trained model that is saved in a folder ```trained_models
 
 ## Gratitude
 <a name="sec5"></a>
+We express our gratitude for the opportunity to participate in the project to our scientific supervisor E. E. Noskova (ITMO).
 
