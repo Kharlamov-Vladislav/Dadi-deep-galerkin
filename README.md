@@ -2,7 +2,9 @@
 
 *Bioinformatics Institute, 2020, spring*
 
-*Authors: V.D. Pankov, V.D. Kharlamov*
+*Authors: <b> V.D. Pankov, V.D. Kharlamov </b>*
+
+*Scientific supervisor: <b> E. E. Noskova </b>*
 
 # Table of contents
 
