@@ -1,6 +1,6 @@
 tensorflow==2.6.4
 dadi==2.0.5
-numpy==1.18.1
+numpy==1.22.0
 scipy==1.4.1
 matplotlib==3.2.1
 seaborn==0.10.1
